@@ -1,0 +1,27 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    book_library.file_uploader:
+        class:      BookLibraryBundle\FileUploader
+        arguments:  ['%upload_directory_absolute%', '%books_directory%', '%covers_directory%']
+    book_library.twig_extension:
+        class:      BookLibraryBundle\Twig\BookLibraryExtension
+        tags:
+            - { name: twig.extension }
+
+    cache:
+        class: Doctrine\Common\Cache\FilesystemCache
+        arguments: ['%cache_dir%']
+
+    book_library.listener:
+        class:    BookLibraryBundle\EventListener\BookSubscriber
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        arguments:  ['@book_library.file_uploader', '@cache']
+
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} | Добавление {% endblock %}
+{% block header_title_text %}{{ parent() }} - Добавление{% endblock %}
+{% block user_menu_items %}
+    <li><a href="{{ path('book_list') }}">На главную</a></li>
+{% endblock %}
+{% block book_table %}
+    {{ form_start(form) }}
+    {{ form_widget(form, {'attr': {'class': 'book_form'}}) }}
+    {{ form_end(form) }}
+{% endblock %}

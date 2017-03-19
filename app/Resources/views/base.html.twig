@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>
+        {% block title %}Личная библиотека книг{% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block body %}
+    <header>
+        {% block user_panel %}
+            <div class="user_panel">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+            </div>
+        {% endblock %}
+        {% block header_title %}
+            <h1>{% block header_title_text %}Личная библиотека книг{% endblock %}</h1>
+        {% endblock %}
+    </header>
+
+    {% block notices %}
+        {% for flashMessage in app.session.flashBag.get('notice-success') %}
+            <p class="notice-success">{{ flashMessage }}</p>
+        {% endfor %}
+    {% endblock %}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <ul class="user_menu">
+        {% block user_menu_items %}
+            <li><a href="{{ path('book_add') }}">Добавить новую книгу</a></li>
+        {% endblock %}
+        </ul>
+    {% endif %}
+
+    {% block book_table %}
+        <h2>Прочитанные мной книги</h2>
+        {% if books %}
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th width="2%">Id</th>
+                    <th>Название книги</th>
+                    <th>Автор</th>
+                    <th>Обложка</th>
+                    <th width="5%">Дата прочтения</th>
+                    <th width="5%">Скачать</th>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <th width="10%"></th>
+                    {% endif %}
+                </tr>
+                {% for book in books %}
+                    <tr>
+                        <td class="align_center">{{ book.id }}</td>
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.author }}</td>
+                        <td class="align_center">
+                            {% if book.coverPath %}
+                                <img src="{{ asset(upload_path.upload ~upload_path.covers ~book.coverPath) }}" {{ img_size(70, 70) }} alt="" />
+                            {% endif %}
+                        </td>
+                        <td class="align_center">{{ book.readedDate|date("d.m.Y") }}</td>
+                        <td class="align_center">
+                            {% if book.allowDownload and book.filePath %}
+                                <a href="{{ asset(upload_path.upload ~upload_path.books ~book.filePath) }}" target="_blank" download="">Скачать</a>
+                            {% endif %}
+                        </td>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <td class="align_center">
+                                <a href="{{ path('book_edit', {'bookId': book.id}) }}">Редактировать</a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p class="book_nothing">Еще ни одна книга не прочитана</p>
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} | Редактирование {% endblock %}
+{% block header_title_text %}{{ parent() }} - Редактирование{% endblock %}
+{% block user_menu_items %}
+    <li><a href="{{ path('book_list') }}">На главную</a></li>
+    {{ parent() }}
+{% endblock %}
+{% block book_table %}
+    {{ form_start(form) }}
+    {{ form_widget(form, {'attr': {'class': 'book_form'}}) }}
+    {{ form_end(form) }}
+    <a href="{{ path('book_remove', {'bookId': books.id}) }}" class="remove_link">Удалить книгу</a>
+{% endblock %}

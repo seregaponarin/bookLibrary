@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #fff0d7;
+    font: 14px "Times New Roman";
+    padding: 10px;
+}
+h1{
+    text-align: center;
+    margin-bottom: 15px;
+}
+h2{
+    margin: 10px 0;
+}
+input, button{
+    outline: none;
+}
+table{
+    padding: 10px;
+    width: 100%;
+    background: #fff;
+}
+table tr th, td{
+    padding: 3px 10px;
+    border: 1px solid #ddd;
+}
+.align_center{
+    text-align: center;
+}
+.user_panel{
+    float: right;
+    margin: 10px 10px;
+}
+.user_menu {
+    background: #eee;
+    border: 1px dotted;
+}
+.user_menu li{
+    display: inline-block;
+    border-right: 1px solid #aaa;
+    background: #fff;
+}
+.user_menu li:hover{
+    background: #ccc;
+}
+.user_menu li a{
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color:#000;
+}
+.book_nothing{
+    padding: 10px;
+    background: #fff;
+}
+.auth_form, .book_form{
+    margin: 10px auto;
+    padding: 15px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #eee;
+}
+.auth_form label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.auth_form label.remember_me{
+    display: inline-block;
+}
+.auth_form input[type=text], .auth_form input[type=password], .book_form input[type=text], .book_form input[type=date]{
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+.auth_form input[type=checkbox]{
+    width: 20px;
+    height: 14px;
+    vertical-align: top;
+}
+.auth_form input[type=submit], .book_form button[type=submit]{
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 3px auto;
+    display: block;
+    width: 100%;
+}
+.book_form{
+    width: 350px;
+}
+.book_form > div{
+    margin: 5px 0 15px 0;
+}
+.book_form label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.book_form label[for=book_allow_download]{
+    display: inline-block;
+}
+.book_form label + ul{
+    list-style: none;
+    color: #c00;
+    margin: 5px 0;
+}
+.book_form #book_allow_download{
+    float: left;
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+    margin-right: 5px;
+}
+.remove_link{
+    display: block;
+    text-align: center;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #a00;
+}
+
+.notice-success{
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    background: #fff;
+    color: #0a0;
+}
+.error_msg{
+    color: #d00;
+    margin: 3px 0;
+}

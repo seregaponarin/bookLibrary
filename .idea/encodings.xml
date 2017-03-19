@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Resources/views/Books/add_book.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Resources/views/Books/edit_book.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Resources/views/base.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/BookLibraryBundle/Controller/DefaultController.php" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
